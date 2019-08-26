@@ -1,0 +1,22 @@
+﻿@model xmall.Models.Product
+
+@{
+    ViewBag.Title = "Product Details";
+    Layout = "~/Views/Shared/_DBLayout.cshtml";
+}
+
+
+<h2>Product Details</h2>
+
+<div class="product-detail">
+    <div class="product-image">
+        <img src='@Url.Content("~/Media/Images/Layout/"+Model.Image)' />
+    </div>
+    <div class="product-detail-content">
+        <p>Product Name: @Model.ProductName</p>
+        <p>Price: &#8358; @(String.Format("{0:N0}", Model.Price))</p>
+        <p>@Html.ActionLink("Order Now", "OrderNow", "ShoppingCart", new { id = Model.ProductId }, null)</p>
+    </div>
+</div>
+
+

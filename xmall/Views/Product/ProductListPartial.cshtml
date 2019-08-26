@@ -1,0 +1,71 @@
+﻿@using xmall.Models;
+@using PagedList;
+@using PagedList.Mvc;
+
+@model PagedList.IPagedList<Product>
+
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="card  card-box">
+            <div class="card-head">
+                <header>Product List</header>
+                <div class="tools">
+                    <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
+                    <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
+                    <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
+                </div>
+            </div>
+            <div class="card-body ">
+                <div class="table-wrap">
+                    <div class="table-responsive">
+                        <table class="table display product-overview mb-30" id="support_table5">
+                            <thead>
+                                <tr>
+                                    <th>Product Image</th>
+                                    <th>Product Name</th>
+                                    <th>Last Purchase Price</th>
+                                    <th>Batch Code</th>
+                                    <th>Supplier</th>
+                                    <th>Qty Available</th>
+                                    <th>Edit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td><img src='@Url.Content("~/Media/Product/Image/"+item.ProductImage)' /></td>
+                                        <td>
+                                            <a href="@Url.Action("Details", "Product", new { id = item.ProductId })">
+                                                @Html.DisplayFor(modelItem => item.ProductName)
+                                            </a>
+                                        </td>
+                                        <td>@Html.DisplayFor(modelItem => item.Price.SellingPrice)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Batch.BatchCode)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Supplier.SupplierName)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Storage.Storage1)</td>
+                                        <td>
+                                            <a href='@Url.Action("Edit", "Product", new { id = item.ProductId })' class="btn btn-tbl-edit btn-xs">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                            <a href='@Url.Action("Delete", "Product", new { id = item.ProductId })' class="btn btn-tbl-delete btn-xs">
+                                                <i class="fa fa-trash-o "></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                            </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="dataTables_paginate paging_simple_numbers">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Products
+</div>

@@ -1,0 +1,141 @@
+﻿@model xmall.Models.Product
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_DBLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="card-head">
+                    <header>Add Product</header>
+                </div>
+                <div class="card-body row">
+                    <div class="col-lg-6 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <label class="mdl-textfield__label">Product Code</label>
+                            @Html.EditorFor(model => model.ProductCode, new { htmlAttributes = new { @class = "mdl-textfield__input" } })
+                            @Html.ValidationMessageFor(model => model.ProductCode, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-6 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <label class="mdl-textfield__label">Product Name</label>
+                            @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "mdl-textfield__input" } })
+                            @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-6 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <label class="mdl-textfield__label">Color</label>
+                            @Html.DropDownList("ColorId", null, htmlAttributes: new { @class = "mdl-textfield__input" })
+                            @Html.ValidationMessageFor(model => model.ColorId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-6 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
+                            @*<label for="sample2" class="pull-right margin-0">
+                    <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                </label>*@
+                            <label for="" class="mdl-textfield__label">Product Category</label>
+                            @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "mdl-textfield__input" })
+                            @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-6 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <label class="mdl-textfield__label">Supplier</label>
+                            @Html.DropDownList("SupplierId", null, htmlAttributes: new { @class = "mdl-textfield__input" })
+                            @Html.ValidationMessageFor(model => model.SupplierId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-6 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" type="text"
+                                   pattern="-?[0-9]*(\.[0-9]+)?" id="text5">
+                            <label class="mdl-textfield__label" for="text5">Mobile Number</label>
+                            <span class="mdl-textfield__error">Number required!</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <label class="mdl-textfield__label">New Product</label>
+                            @Html.CheckBox("IsNew", new { htmlAttributes = new { @class = "IsNew" } })
+                            @Html.ValidationMessageFor(model => model.IsNew, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-6 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <label class="mdl-textfield__label">Weigth</label>
+                            @Html.EditorFor(model => model.weigth, new { htmlAttributes = new { @class = "mdl-textfield__input" } })
+                            @Html.ValidationMessageFor(model => model.weigth, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <label class="control-label col-md-3">Upload Photo</label>
+                        <form id="id_dropzone" class="dropzone">
+                            <div class="dz-message">
+                                <div class="dropIcon">
+                                    <i class="material-icons">cloud_upload</i>
+                                </div>
+                                <h3>Drop files here or click to upload.</h3>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield txt-full-width">
+                            <textarea class="mdl-textfield__input" rows="4"
+                                      id="education"></textarea>
+                            <label class="mdl-textfield__label" for="text7">Comment</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20 text-center">
+                        <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink">Submit</button>
+                        <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+    @section Styles {
+        @Styles.Render(
+        "~/Content/plugins/dropzone/dropzone.css",
+        "~/Content/plugins/material-datetimepicker/bootstrap-material-datetimepicker.css"
+        )
+    }
+
+
+    @section Scripts {
+        @Scripts.Render(
+        "~/Content/plugins/jquery/jquery.min.js",
+        "~/Content/plugins/popper/popper.min.js",
+        "~/Content/plugins/jquery-blockui/jquery.blockui.min.js",
+        "~/Content/plugins/jquery-slimscroll/jquery.slimscroll.min.js",
+
+        "~/Content/plugins/bootstrap/js/bootstrap.min.js",
+
+        "~/Content/js/app.js",
+        "~/Content/js/layout.js",
+        "~/Content/js/theme-color.js",
+
+        "~/Content/plugins/material/material.min.js",
+        "~/Content/js/pages/material_select/getmdl-select.js",
+        "~/Content/plugins/material-datetimepicker/moment-with-locales.min.js",
+        "~/Content/plugins/material-datetimepicker/bootstrap-material-datetimepicker.js",
+        "~/Content/plugins/material-datetimepicker/datetimepicker.js",
+
+        "~/Content/plugins/dropzone/dropzone.js",
+        "~/Content/plugins/dropzone/dropzone-call.js",
+
+        "~/Content/js/pages/ui/animations.js"
+        )
+    }
+

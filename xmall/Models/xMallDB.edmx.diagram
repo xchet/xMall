@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e3c9cd0837104748a18688e6f26b7bdd" Name="Diagram1">
+        <EntityTypeShape EntityType="xMallDBModel.Batch" Width="1.5" PointX="0.75" PointY="27" />
+        <EntityTypeShape EntityType="xMallDBModel.Category" Width="1.5" PointX="0.75" PointY="30" />
+        <EntityTypeShape EntityType="xMallDBModel.Color" Width="1.5" PointX="0.75" PointY="13" />
+        <EntityTypeShape EntityType="xMallDBModel.Model" Width="1.5" PointX="0.75" PointY="15.375" />
+        <EntityTypeShape EntityType="xMallDBModel.News" Width="1.5" PointX="3" PointY="16" />
+        <EntityTypeShape EntityType="xMallDBModel.Order" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="xMallDBModel.OrderDetail" Width="1.5" PointX="5.25" PointY="8.625" />
+        <EntityTypeShape EntityType="xMallDBModel.Price" Width="1.5" PointX="0.75" PointY="20" />
+        <EntityTypeShape EntityType="xMallDBModel.Product" Width="1.5" PointX="3" PointY="6.25" />
+        <EntityTypeShape EntityType="xMallDBModel.ProductType" Width="1.5" PointX="0.75" PointY="17.75" />
+        <EntityTypeShape EntityType="xMallDBModel.Purchase" Width="1.5" PointX="5.25" PointY="5.5" />
+        <EntityTypeShape EntityType="xMallDBModel.Storage" Width="1.5" PointX="8.25" PointY="8.375" />
+        <EntityTypeShape EntityType="xMallDBModel.Supplier" Width="1.5" PointX="0.75" PointY="22.75" />
+        <EntityTypeShape EntityType="xMallDBModel.User" Width="1.5" PointX="0.75" PointY="7.5" />
+        <EntityTypeShape EntityType="xMallDBModel.Warehouse" Width="1.5" PointX="6" PointY="11.75" />
+        <AssociationConnector Association="xMallDBModel.FK_Product_Batch" />
+        <AssociationConnector Association="xMallDBModel.FK_Product_Category" />
+        <AssociationConnector Association="xMallDBModel.FK_Product_Color" />
+        <AssociationConnector Association="xMallDBModel.FK_Product_Model" />
+        <AssociationConnector Association="xMallDBModel.FK_News_User" />
+        <AssociationConnector Association="xMallDBModel.FK_OrderDetail_Order" />
+        <AssociationConnector Association="xMallDBModel.FK_OrderDetail_Product" />
+        <AssociationConnector Association="xMallDBModel.FK_Product_Price" />
+        <AssociationConnector Association="xMallDBModel.FK_Product_ProductType" />
+        <AssociationConnector Association="xMallDBModel.FK_Product_Storage" />
+        <AssociationConnector Association="xMallDBModel.FK_Product_Supplier" />
+        <AssociationConnector Association="xMallDBModel.FK_Product_User" />
+        <AssociationConnector Association="xMallDBModel.FK_Purchase_Product" />
+        <AssociationConnector Association="xMallDBModel.FK_Storage_Product" />
+        <AssociationConnector Association="xMallDBModel.FK_Storage_Product1" />
+        <AssociationConnector Association="xMallDBModel.FK_Purchase_Supplier" />
+        <AssociationConnector Association="xMallDBModel.FK_Storage_Warehouse" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

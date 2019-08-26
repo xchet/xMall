@@ -45,10 +45,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -123,26 +137,360 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activities\RouteDomains.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\DashBoardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Batch.cs">
+      <DependentUpon>xMallDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Category.cs">
+      <DependentUpon>xMallDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Color.cs">
+      <DependentUpon>xMallDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.cs">
+      <DependentUpon>xMallDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\News.cs">
+      <DependentUpon>xMallDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order.cs">
+      <DependentUpon>xMallDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderDetail.cs">
+      <DependentUpon>xMallDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Price.cs">
+      <DependentUpon>xMallDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product.cs">
+      <DependentUpon>xMallDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProductType.cs">
+      <DependentUpon>xMallDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Purchase.cs">
+      <DependentUpon>xMallDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Storage.cs">
+      <DependentUpon>xMallDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Supplier.cs">
+      <DependentUpon>xMallDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>xMallDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Warehouse.cs">
+      <DependentUpon>xMallDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\xMallDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>xMallDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\xMallDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>xMallDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\xMallDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>xMallDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\material_style.css" />
+    <Content Include="Content\css\pages\animate_page.css" />
+    <Content Include="Content\css\pages\extra_pages.css" />
+    <Content Include="Content\css\pages\formlayout.css" />
+    <Content Include="Content\css\pages\inbox.min.css" />
+    <Content Include="Content\css\pages\pricing.css" />
+    <Content Include="Content\css\pages\steps.css" />
+    <Content Include="Content\css\pages\timeline.css" />
+    <Content Include="Content\css\pages\typography.css" />
+    <Content Include="Content\css\plugins.min.css" />
+    <Content Include="Content\css\responsive.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\theme-color.css" />
+    <Content Include="Content\img\bg-01.jpg" />
+    <Content Include="Content\img\blog\blog1.jpg" />
+    <Content Include="Content\img\blog\blog2.jpg" />
+    <Content Include="Content\img\blog\blog3.jpg" />
+    <Content Include="Content\img\blog\blog4.jpg" />
+    <Content Include="Content\img\datatable-row-openclose.html" />
+    <Content Include="Content\img\dp.jpg" />
+    <Content Include="Content\img\favicon.ico" />
+    <Content Include="Content\img\image-gallery\1.jpg" />
+    <Content Include="Content\img\image-gallery\10.jpg" />
+    <Content Include="Content\img\image-gallery\11.jpg" />
+    <Content Include="Content\img\image-gallery\12.jpg" />
+    <Content Include="Content\img\image-gallery\13.jpg" />
+    <Content Include="Content\img\image-gallery\14.jpg" />
+    <Content Include="Content\img\image-gallery\15.jpg" />
+    <Content Include="Content\img\image-gallery\2.jpg" />
+    <Content Include="Content\img\image-gallery\3.jpg" />
+    <Content Include="Content\img\image-gallery\4.jpg" />
+    <Content Include="Content\img\image-gallery\5.jpg" />
+    <Content Include="Content\img\image-gallery\6.jpg" />
+    <Content Include="Content\img\image-gallery\7.jpg" />
+    <Content Include="Content\img\image-gallery\8.jpg" />
+    <Content Include="Content\img\image-gallery\9.jpg" />
+    <Content Include="Content\img\image-gallery\thumb\thumb-1.jpg" />
+    <Content Include="Content\img\image-gallery\thumb\thumb-10.jpg" />
+    <Content Include="Content\img\image-gallery\thumb\thumb-11.jpg" />
+    <Content Include="Content\img\image-gallery\thumb\thumb-12.jpg" />
+    <Content Include="Content\img\image-gallery\thumb\thumb-13.jpg" />
+    <Content Include="Content\img\image-gallery\thumb\thumb-14.jpg" />
+    <Content Include="Content\img\image-gallery\thumb\thumb-15.jpg" />
+    <Content Include="Content\img\image-gallery\thumb\thumb-2.jpg" />
+    <Content Include="Content\img\image-gallery\thumb\thumb-3.jpg" />
+    <Content Include="Content\img\image-gallery\thumb\thumb-4.jpg" />
+    <Content Include="Content\img\image-gallery\thumb\thumb-5.jpg" />
+    <Content Include="Content\img\image-gallery\thumb\thumb-6.jpg" />
+    <Content Include="Content\img\image-gallery\thumb\thumb-7.jpg" />
+    <Content Include="Content\img\image-gallery\thumb\thumb-8.jpg" />
+    <Content Include="Content\img\image-gallery\thumb\thumb-9.jpg" />
+    <Content Include="Content\img\invoice_logo.png" />
+    <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\mega-img1.jpg" />
+    <Content Include="Content\img\mega-img2.jpg" />
+    <Content Include="Content\img\mega-img3.jpg" />
+    <Content Include="Content\img\slider\fullimage1.jpg" />
+    <Content Include="Content\img\slider\fullimage2.jpg" />
+    <Content Include="Content\img\slider\fullimage3.jpg" />
+    <Content Include="Content\img\slider\owl1.jpg" />
+    <Content Include="Content\img\slider\owl2.jpg" />
+    <Content Include="Content\img\slider\owl3.jpg" />
+    <Content Include="Content\img\slider\owl4.jpg" />
+    <Content Include="Content\img\slider\owl5.jpg" />
+    <Content Include="Content\img\slider\owl6.jpg" />
+    <Content Include="Content\img\slider\owl7.jpg" />
+    <Content Include="Content\img\slider\owl8.jpg" />
+    <Content Include="Content\img\slider\slider1.jpg" />
+    <Content Include="Content\img\slider\slider2.jpg" />
+    <Content Include="Content\img\slider\slider3.jpg" />
+    <Content Include="Content\img\user\user1.jpg" />
+    <Content Include="Content\img\user\user10.jpg" />
+    <Content Include="Content\img\user\user2.jpg" />
+    <Content Include="Content\img\user\user3.jpg" />
+    <Content Include="Content\img\user\user4.jpg" />
+    <Content Include="Content\img\user\user5.jpg" />
+    <Content Include="Content\img\user\user6.jpg" />
+    <Content Include="Content\img\user\user7.jpg" />
+    <Content Include="Content\img\user\user8.jpg" />
+    <Content Include="Content\img\user\user9.jpg" />
+    <Content Include="Content\img\user\usrbig1.jpg" />
+    <Content Include="Content\img\user\usrbig2.jpg" />
+    <Content Include="Content\img\user\usrbig3.jpg" />
+    <Content Include="Content\img\user\usrbig4.jpg" />
+    <Content Include="Content\img\user\usrbig5.jpg" />
+    <Content Include="Content\img\user\usrbig6.jpg" />
+    <Content Include="Content\img\user\usrbig7.jpg" />
+    <Content Include="Content\img\user\usrbig8.jpg" />
+    <Content Include="Content\img\user\usrbig9.jpg" />
+    <Content Include="Content\img\vehicle\v1.jpg" />
+    <Content Include="Content\img\vehicle\v2.jpg" />
+    <Content Include="Content\img\vehicle\v3.jpg" />
+    <Content Include="Content\img\vehicle\v4.jpg" />
+    <Content Include="Content\img\vehicle\v5.jpg" />
+    <Content Include="Content\img\vehicle\v6.jpg" />
+    <Content Include="Content\js\app.js" />
+    <Content Include="Content\js\layout.js" />
+    <Content Include="Content\js\pages\calendar\calendar.min.js" />
+    <Content Include="Content\js\pages\chart\chartjs\chartjs-data.js" />
+    <Content Include="Content\js\pages\chart\chartjs\home-data2.js" />
+    <Content Include="Content\js\pages\chart\echart\echart-data.js" />
+    <Content Include="Content\js\pages\chart\morris\morris_chart_data.js" />
+    <Content Include="Content\js\pages\chart\morris\morris_home_data.js" />
+    <Content Include="Content\js\pages\extra_pages\login.js" />
+    <Content Include="Content\js\pages\map\google-maps-data.js" />
+    <Content Include="Content\js\pages\map\vector-data.js" />
+    <Content Include="Content\js\pages\material-loading\material-loading.js" />
+    <Content Include="Content\js\pages\material_select\getmdl-select.js" />
+    <Content Include="Content\js\pages\owl-carousel\owl_data.js" />
+    <Content Include="Content\js\pages\select2\select2-init.js" />
+    <Content Include="Content\js\pages\sparkline\sparkline-data.js" />
+    <Content Include="Content\js\pages\steps\steps-data.js" />
+    <Content Include="Content\js\pages\summernote\summernote-data.js" />
+    <Content Include="Content\js\pages\sweet-alert\sweet-alert-data.js" />
+    <Content Include="Content\js\pages\table\editable_table_data.js" />
+    <Content Include="Content\js\pages\table\table_data.js" />
+    <Content Include="Content\js\pages\timeline\timeline.js" />
+    <Content Include="Content\js\pages\treeview\treeview-data.js" />
+    <Content Include="Content\js\pages\ui\animations.js" />
+    <Content Include="Content\js\pages\validation\form-validation.js" />
+    <Content Include="Content\js\theme-color.js" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css" />
+    <Content Include="Content\plugins\bootstrap-colorpicker\img\bootstrap-colorpicker\alpha-horizontal.png" />
+    <Content Include="Content\plugins\bootstrap-colorpicker\img\bootstrap-colorpicker\alpha.png" />
+    <Content Include="Content\plugins\bootstrap-colorpicker\img\bootstrap-colorpicker\hue-horizontal.png" />
+    <Content Include="Content\plugins\bootstrap-colorpicker\img\bootstrap-colorpicker\hue.png" />
+    <Content Include="Content\plugins\bootstrap-colorpicker\img\bootstrap-colorpicker\saturation.png" />
+    <Content Include="Content\plugins\bootstrap-colorpicker\js\bootstrap-colorpicker-init.js" />
+    <Content Include="Content\plugins\bootstrap-colorpicker\js\bootstrap-colorpicker.js" />
+    <Content Include="Content\plugins\bootstrap-datepicker\css\bootstrap-datepicker3.min.css" />
+    <Content Include="Content\plugins\bootstrap-datepicker\js\bootstrap-datepicker.min.js" />
+    <Content Include="Content\plugins\bootstrap-datetimepicker\css\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\plugins\bootstrap-datetimepicker\js\bootstrap-datetimepicker-init.js" />
+    <Content Include="Content\plugins\bootstrap-datetimepicker\js\bootstrap-datetimepicker.js" />
+    <Content Include="Content\plugins\bootstrap-editable\bootstrap-editable\css\bootstrap-editable.css" />
+    <Content Include="Content\plugins\bootstrap-editable\bootstrap-editable\img\clear.png" />
+    <Content Include="Content\plugins\bootstrap-editable\bootstrap-editable\img\loading.gif" />
+    <Content Include="Content\plugins\bootstrap-editable\inputs-ext\address\address.css" />
+    <Content Include="Content\plugins\bootstrap-inputmask\bootstrap-inputmask.min.js" />
+    <Content Include="Content\plugins\bootstrap-tabdrop\js\bootstrap-tabdrop.js" />
+    <Content Include="Content\plugins\bootstrap-treeview\bootstrap-treeview.js" />
+    <Content Include="Content\plugins\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\plugins\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\plugins\chart-js\Chart.bundle.js" />
+    <Content Include="Content\plugins\chart-js\utils.js" />
+    <Content Include="Content\plugins\counterup\jquery.counterup.min.js" />
+    <Content Include="Content\plugins\counterup\jquery.waypoints.min.js" />
+    <Content Include="Content\plugins\datatables\editabletable.js" />
+    <Content Include="Content\plugins\datatables\jquery.dataTables.min.js" />
+    <Content Include="Content\plugins\datatables\plugins\bootstrap\dataTables.bootstrap4.min.css" />
+    <Content Include="Content\plugins\datatables\plugins\bootstrap\dataTables.bootstrap4.min.js" />
+    <Content Include="Content\plugins\dropzone\dropzone-call.js" />
+    <Content Include="Content\plugins\dropzone\dropzone.css" />
+    <Content Include="Content\plugins\dropzone\dropzone.js" />
+    <Content Include="Content\plugins\echarts\echarts.js" />
+    <Content Include="Content\plugins\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\plugins\fullcalendar\fullcalendar.css" />
+    <Content Include="Content\plugins\fullcalendar\fullcalendar.min.js" />
+    <Content Include="Content\plugins\gmaps\gmaps.min.js" />
+    <Content Include="Content\plugins\iconic\css\material-design-iconic-font.min.css" />
+    <Content Include="Content\plugins\jquery-blockui\jquery.blockui.min.js" />
+    <Content Include="Content\plugins\jquery-file-upload\blueimp-gallery\blueimp-gallery.min.css" />
+    <Content Include="Content\plugins\jquery-file-upload\css\jquery.fileupload-ui.css" />
+    <Content Include="Content\plugins\jquery-file-upload\css\jquery.fileupload.css" />
+    <Content Include="Content\plugins\jquery-file-upload\img\error-2.html" />
+    <Content Include="Content\plugins\jquery-file-upload\img\error.html" />
+    <Content Include="Content\plugins\jquery-file-upload\img\loading.gif" />
+    <Content Include="Content\plugins\jquery-file-upload\img\play-pause-2.html" />
+    <Content Include="Content\plugins\jquery-file-upload\img\play-pause.html" />
+    <Content Include="Content\plugins\jquery-file-upload\img\progressbar.gif" />
+    <Content Include="Content\plugins\jquery-file-upload\img\video-play-2.html" />
+    <Content Include="Content\plugins\jquery-file-upload\img\video-play.html" />
+    <Content Include="Content\plugins\jquery-slimscroll\jquery.slimscroll.min.js" />
+    <Content Include="Content\plugins\jquery-tags-input\jquery-tags-input-init.js" />
+    <Content Include="Content\plugins\jquery-tags-input\jquery-tags-input.css" />
+    <Content Include="Content\plugins\jquery-tags-input\jquery-tags-input.js" />
+    <Content Include="Content\plugins\jquery-toast\dist\jquery.toast.min.css" />
+    <Content Include="Content\plugins\jquery-toast\dist\jquery.toast.min.js" />
+    <Content Include="Content\plugins\jquery-toast\dist\toast.js" />
+    <Content Include="Content\plugins\jquery-ui\jquery-ui.min.js" />
+    <Content Include="Content\plugins\jquery-validation\js\additional-methods.min.js" />
+    <Content Include="Content\plugins\jquery-validation\js\jquery.validate.min.js" />
+    <Content Include="Content\plugins\jquery\jquery.min.js" />
+    <Content Include="Content\plugins\jqvmap\data\jquery.vmap.sampledata.js" />
+    <Content Include="Content\plugins\jqvmap\jquery.vmap.js" />
+    <Content Include="Content\plugins\jqvmap\jqvmap.css" />
+    <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.europe.js" />
+    <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.germany.js" />
+    <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.russia.js" />
+    <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.usa.js" />
+    <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.world.js" />
+    <Content Include="Content\plugins\light-gallery\css\lightgallery.css" />
+    <Content Include="Content\plugins\light-gallery\fonts\lg.svg" />
+    <Content Include="Content\plugins\light-gallery\img\loading.gif" />
+    <Content Include="Content\plugins\light-gallery\img\video-play.png" />
+    <Content Include="Content\plugins\light-gallery\img\vimeo-play.png" />
+    <Content Include="Content\plugins\light-gallery\img\youtube-play.png" />
+    <Content Include="Content\plugins\light-gallery\js\image-gallery.js" />
+    <Content Include="Content\plugins\light-gallery\js\lightgallery-all.js" />
+    <Content Include="Content\plugins\material-datetimepicker\bootstrap-material-datetimepicker.css" />
+    <Content Include="Content\plugins\material-datetimepicker\bootstrap-material-datetimepicker.js" />
+    <Content Include="Content\plugins\material-datetimepicker\datetimepicker.js" />
+    <Content Include="Content\plugins\material-datetimepicker\moment-with-locales.min.js" />
+    <Content Include="Content\plugins\material\material.min.css" />
+    <Content Include="Content\plugins\material\material.min.js" />
+    <Content Include="Content\plugins\modernizr\modernizr.min.js" />
+    <Content Include="Content\plugins\moment\moment.min.js" />
+    <Content Include="Content\plugins\morris\morris.css" />
+    <Content Include="Content\plugins\morris\morris.min.js" />
+    <Content Include="Content\plugins\morris\raphael-min.js" />
+    <Content Include="Content\plugins\owl-carousel\AjaxLoader.html" />
+    <Content Include="Content\plugins\owl-carousel\grabbing.html" />
+    <Content Include="Content\plugins\owl-carousel\owl.carousel.css" />
+    <Content Include="Content\plugins\owl-carousel\owl.carousel.js" />
+    <Content Include="Content\plugins\owl-carousel\owl.theme.css" />
+    <Content Include="Content\plugins\popper\popper.min.js" />
+    <Content Include="Content\plugins\select2\css\select2-bootstrap.min.css" />
+    <Content Include="Content\plugins\select2\css\select2.css" />
+    <Content Include="Content\plugins\select2\js\select2.js" />
+    <Content Include="Content\plugins\simple-line-icons\fonts\Simple-Line-Iconsb26c.svg" />
+    <Content Include="Content\plugins\simple-line-icons\simple-line-icons.min.css" />
+    <Content Include="Content\plugins\sparkline\jquery.sparkline.min.js" />
+    <Content Include="Content\plugins\steps\jquery.steps.js" />
+    <Content Include="Content\plugins\summernote\summernote.css" />
+    <Content Include="Content\plugins\summernote\summernote.min.js" />
+    <Content Include="Content\plugins\sweet-alert\sweetalert.min.css" />
+    <Content Include="Content\plugins\sweet-alert\sweetalert.min.js" />
+    <Content Include="ContentOld\bootstrap-theme.css" />
+    <Content Include="ContentOld\bootstrap-theme.min.css" />
+    <Content Include="ContentOld\bootstrap.css" />
+    <Content Include="ContentOld\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="ContentOld\Site.css" />
+    <Content Include="Models\xMallDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>xMallDB.edmx</DependentUpon>
+      <LastGenOutput>xMallDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\xMallDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>xMallDB.edmx</DependentUpon>
+      <LastGenOutput>xMallDB.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\plugins\font-awesome\fonts\fontawesome-webfont3e6e.eot" />
+    <Content Include="Content\plugins\font-awesome\fonts\fontawesome-webfont3e6e.ttf" />
+    <Content Include="Content\plugins\font-awesome\fonts\fontawesome-webfont3e6e.woff" />
+    <Content Include="Content\plugins\font-awesome\fonts\fontawesome-webfont3e6e.woff2" />
+    <Content Include="Content\plugins\font-awesome\fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="Content\plugins\iconic\fonts\Material-Design-Iconic-Fontd1f1.ttf" />
+    <Content Include="Content\plugins\iconic\fonts\Material-Design-Iconic-Fontd1f1.woff" />
+    <Content Include="Content\plugins\iconic\fonts\Material-Design-Iconic-Fontd1f1.woff2" />
+    <Content Include="Content\plugins\light-gallery\fonts\lg.eot" />
+    <Content Include="Content\plugins\light-gallery\fonts\lg.ttf" />
+    <Content Include="Content\plugins\light-gallery\fonts\lg.woff" />
+    <Content Include="Content\plugins\light-gallery\fonts\lgd41d.eot" />
+    <Content Include="Content\plugins\material-icons\iconfont\MaterialIcons-Regular.eot" />
+    <Content Include="Content\plugins\material-icons\iconfont\MaterialIcons-Regular.ttf" />
+    <Content Include="Content\plugins\material-icons\iconfont\MaterialIcons-Regular.woff" />
+    <Content Include="Content\plugins\material-icons\iconfont\MaterialIcons-Regular.woff2" />
+    <Content Include="Content\plugins\simple-line-icons\fonts\Simple-Line-Iconsb26c.eot" />
+    <Content Include="Content\plugins\simple-line-icons\fonts\Simple-Line-Iconsb26c.ttf" />
+    <Content Include="Content\plugins\simple-line-icons\fonts\Simple-Line-Iconsb26c.woff" />
+    <Content Include="Content\plugins\simple-line-icons\fonts\Simple-Line-Iconsb26c.woff2" />
+    <Content Include="Content\plugins\summernote\font\summernote291f.eot" />
+    <Content Include="Content\plugins\summernote\font\summernote291f.ttf" />
+    <Content Include="Content\plugins\summernote\font\summernote291f.woff" />
+    <Content Include="Content\plugins\summernote\font\summernoted41d.eot" />
+    <EntityDeploy Include="Models\xMallDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>xMallDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\xMallDB.edmx.diagram">
+      <DependentUpon>xMallDB.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -168,23 +516,41 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_DBLayout.cshtml" />
+    <Content Include="Views\DashBoard\Index.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Category\CategoryPartial.cshtml" />
+    <Content Include="Views\Product\ProductListPartial.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\Category\Create.cshtml" />
+    <Content Include="Views\Product\Create.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Media\Product\Image\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="ContentOld\bootstrap.min.css.map" />
+    <Content Include="ContentOld\bootstrap.css.map" />
+    <Content Include="ContentOld\bootstrap-theme.min.css.map" />
+    <Content Include="ContentOld\bootstrap-theme.css.map" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

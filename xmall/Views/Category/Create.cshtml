@@ -1,0 +1,70 @@
+﻿@model xmall.Models.Category
+
+@{
+    ViewBag.Title = "Create New Category";
+    Layout = "~/Views/Shared/_DBLayout.cshtml";
+ }
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box">
+                <div class="card-head">
+                    <header>Add Category</header>
+                </div>
+                <div class="card-body row">
+                    <div class="col-lg-6 p-t-20">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <label class="mdl-textfield__label">Category Name</label>
+
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "mdl-textfield__input" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20 text-center">
+                        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Styles {
+    @Styles.Render(
+    "~/Content/plugins/dropzone/dropzone.css",
+    "~/Content/plugins/material-datetimepicker/bootstrap-material-datetimepicker.css"
+    )
+}
+
+
+@section Scripts {
+    @Scripts.Render(
+    "~/Content/plugins/jquery/jquery.min.js",
+    "~/Content/plugins/popper/popper.min.js",
+    "~/Content/plugins/jquery-blockui/jquery.blockui.min.js",
+    "~/Content/plugins/jquery-slimscroll/jquery.slimscroll.min.js",
+
+    "~/Content/plugins/bootstrap/js/bootstrap.min.js",
+
+    "~/Content/js/app.js",
+    "~/Content/js/layout.js",
+    "~/Content/js/theme-color.js",
+
+    "~/Content/plugins/material/material.min.js",
+    "~/Content/js/pages/material_select/getmdl-select.js",
+    "~/Content/plugins/material-datetimepicker/moment-with-locales.min.js",
+    "~/Content/plugins/material-datetimepicker/bootstrap-material-datetimepicker.js",
+    "~/Content/plugins/material-datetimepicker/datetimepicker.js",
+
+    "~/Content/plugins/dropzone/dropzone.js",
+    "~/Content/plugins/dropzone/dropzone-call.js",
+
+    "~/Content/js/pages/ui/animations.js"
+    )
+}
